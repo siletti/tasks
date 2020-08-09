@@ -18,6 +18,7 @@ import {TaskService} from "./tasks/task.service";
     TasksListComponent
   ],
   imports: [
+      // add for new versions
       HttpClientModule,
     BrowserModule,
     AppRoutingModule

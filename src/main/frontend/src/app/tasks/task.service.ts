@@ -10,6 +10,6 @@ export class TaskService {
 
     getTasks(){
         let observable = this.http.get('/api/tasks');
-        return observable.pipe(map(response=>response));
+        return observable;
     }
 }
