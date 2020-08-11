@@ -21,10 +21,15 @@ export class TasksAddComponent implements OnInit {
     onTaskAdd(event) {
 
         let date = new Date();
-        let dateFormatted: string = date.toLocaleDateString("en-US", {year: 'numeric'})
+        let todayDateFormatted: string = date.toLocaleDateString("en-US", {year: 'numeric'})
             + "-" + date.toLocaleDateString("en-US", {month: '2-digit'})
             + "-" + date.toLocaleDateString("en-US", {day: '2-digit'})
-        let task = new Task(event.target.value, false, dateFormatted);
-        this.taskService.addTask(task).subscribe();
+        let task: Task = new Task(event.target.value, false, todayDateFormatted);
+        this.taskService.addTask(task).subscribe(
+            (task: Task) => {
+                this.addTaskValue = ' ';
+                this.taskService.onTaskAdded.emit(task);
+            }
+        );
     }
 }
