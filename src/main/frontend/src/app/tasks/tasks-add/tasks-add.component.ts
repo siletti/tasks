@@ -10,7 +10,7 @@ import {Task} from "../task.model";
 
 export class TasksAddComponent implements OnInit {
 
-    addTaskValue: String = null;
+    addTaskValue: string = null;
 
     constructor(private taskService: TaskService) {
     }
@@ -18,13 +18,13 @@ export class TasksAddComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onTaskAdd(event) {
+    onTaskAdd() {
 
         let date = new Date();
         let todayDateFormatted: string = date.toLocaleDateString("en-US", {year: 'numeric'})
             + "-" + date.toLocaleDateString("en-US", {month: '2-digit'})
             + "-" + date.toLocaleDateString("en-US", {day: '2-digit'})
-        let task: Task = new Task(event.target.value, false, todayDateFormatted);
+        let task: Task = new Task(this.addTaskValue, false, todayDateFormatted);
         this.taskService.addTask(task).subscribe(
             (task: Task) => {
                 this.addTaskValue = ' ';
